@@ -1,206 +1,253 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Shield, Link, CreditCard, Sprout, ArrowRight } from 'lucide-react';
+import { Shield, Link, CreditCard, Sprout, ArrowRight, CheckCircle } from 'lucide-react';
 
 interface Product {
   id: string;
   name: string;
   tagline: string;
   description: string;
+  longDescription: string;
+  benefits: string[];
   icon: React.ReactNode;
   color: string;
-  glowColor: string;
+  bgColor: string;
+  accentColor: string;
 }
 
 const products: Product[] = [
   {
     id: 'oversight',
     name: 'Oversight',
-    tagline: 'Fraud doesn\'t stand a chance.',
-    description: 'Trust Without Compromise - Advanced monitoring system designed to reduce fraud in organizations and governments.',
+    tagline: 'Advanced Fraud Prevention & Monitoring',
+    description: 'Enterprise-grade fraud detection system that protects organizations and governments.',
+    longDescription: 'Oversight leverages cutting-edge AI and blockchain technology to create an impenetrable shield against fraud. Our system monitors transactions, behaviors, and patterns in real-time, providing instant alerts and comprehensive reporting.',
+    benefits: [
+      'Real-time fraud detection with 99.9% accuracy',
+      'AI-powered behavioral analysis',
+      'Comprehensive audit trails',
+      'Regulatory compliance built-in'
+    ],
     icon: <Shield className="w-8 h-8" />,
     color: 'from-red-500 to-orange-500',
-    glowColor: 'shadow-red-500/30',
+    bgColor: 'bg-red-50',
+    accentColor: 'text-red-600'
   },
   {
     id: 'transx',
-    name: 'TransX',
-    tagline: 'The backbone of the TransX ecosystem.',
-    description: 'The Chain That Rewrites the Rules - Our Layer 1 blockchain powering the future of decentralized applications.',
+    name: 'TransX Chain',
+    tagline: 'Next-Generation Layer 1 Blockchain',
+    description: 'High-performance blockchain infrastructure powering the future of decentralized applications.',
+    longDescription: 'TransX Chain is built from the ground up for enterprise use cases, offering unprecedented speed, security, and scalability. Our consensus mechanism ensures fast finality while maintaining decentralization.',
+    benefits: [
+      '100,000+ transactions per second',
+      'Sub-second finality',
+      'Enterprise-grade security',
+      'EVM compatible'
+    ],
     icon: <Link className="w-8 h-8" />,
-    color: 'from-electric to-blue-400',
-    glowColor: 'shadow-blue-500/30',
+    color: 'from-blue-500 to-purple-600',
+    bgColor: 'bg-blue-50',
+    accentColor: 'text-blue-600'
   },
   {
     id: 'warex',
     name: 'Warex',
-    tagline: 'The Stripe of Web3.',
-    description: 'Crypto Payments. Simplified. - Enable seamless payments using crypto and stablecoins with enterprise-grade security.',
+    tagline: 'Enterprise Crypto Payment Solutions',
+    description: 'Seamless cryptocurrency payments with enterprise-grade security and compliance.',
+    longDescription: 'Warex transforms how businesses handle digital payments, offering a comprehensive suite of tools for accepting, processing, and managing cryptocurrency transactions. Built for scale and security.',
+    benefits: [
+      'Multi-currency support',
+      'Instant settlement',
+      'Built-in compliance tools',
+      'Enterprise APIs'
+    ],
     icon: <CreditCard className="w-8 h-8" />,
-    color: 'from-green-500 to-emerald-400',
-    glowColor: 'shadow-green-500/30',
+    color: 'from-green-500 to-emerald-600',
+    bgColor: 'bg-green-50',
+    accentColor: 'text-green-600'
   },
   {
     id: 'farmx',
     name: 'FarmX',
-    tagline: 'Agriculture meets blockchain.',
-    description: 'Feeding the Future, Fraud-Free - Help organizations monitor and distribute farming essentials with complete transparency.',
+    tagline: 'Agricultural Supply Chain Transparency',
+    description: 'Blockchain-powered solutions for agricultural monitoring and distribution.',
+    longDescription: 'FarmX brings unprecedented transparency to agricultural supply chains, enabling organizations to track products from farm to table. Our platform ensures food safety, quality control, and fair trade practices.',
+    benefits: [
+      'End-to-end traceability',
+      'Quality assurance tracking',
+      'Fair trade verification',
+      'Sustainability metrics'
+    ],
     icon: <Sprout className="w-8 h-8" />,
-    color: 'from-lime-500 to-green-400',
-    glowColor: 'shadow-lime-500/30',
+    color: 'from-lime-500 to-green-600',
+    bgColor: 'bg-lime-50',
+    accentColor: 'text-lime-600'
   },
 ];
 
 const ProductStoryline = () => {
-  const [activeProduct, setActiveProduct] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
+  const productRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const productId = entry.target.getAttribute('data-product-id');
+            if (productId) {
+              setVisibleProducts(prev => new Set([...prev, productId]));
+            }
+          }
+        });
       },
-      { threshold: 0.3 }
+      { 
+        threshold: 0.3,
+        rootMargin: '-50px 0px'
+      }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    Object.values(productRefs.current).forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
 
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const interval = setInterval(() => {
-      setActiveProduct((prev) => (prev + 1) % products.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isVisible]);
-
-  const currentProduct = products[activeProduct];
-
   return (
-    <section ref={sectionRef} className="min-h-screen bg-background relative overflow-hidden py-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-neural-net opacity-20" />
+    <section className="min-h-screen bg-background relative overflow-hidden py-20">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 professional-grid opacity-20" />
       
-      {/* Title */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center mb-16">
-        <h2 className={`text-5xl md:text-6xl font-bold gradient-text mb-6 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          Our Ecosystem
+      {/* Section Header */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center mb-20">
+        <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+          Our Complete
+          <br />
+          <span className="text-gradient">Ecosystem</span>
         </h2>
-        <p className={`text-xl text-muted-foreground max-w-3xl mx-auto transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          Four revolutionary products working together to transform how the world interacts with blockchain technology.
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          Four integrated solutions working together to transform how organizations leverage blockchain technology. 
+          Each product builds upon the others, creating a comprehensive platform for the future.
         </p>
       </div>
 
-      {/* Main Product Display */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Product Visualization */}
-          <div className={`relative transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            <div className="relative">
-              {/* Main Product Card */}
-              <div className={`glass-effect rounded-2xl p-8 border border-electric/20 hover-glow transition-all duration-500 ${currentProduct.glowColor}`}>
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${currentProduct.color} mb-6 animate-glow-pulse`}>
-                  {currentProduct.icon}
-                </div>
-                
-                <h3 className="text-3xl font-bold text-foreground mb-3">
-                  {currentProduct.name}
-                </h3>
-                
-                <p className="text-lg text-electric font-semibold mb-4">
-                  {currentProduct.tagline}
-                </p>
-                
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {currentProduct.description}
-                </p>
-                
-                <Button variant="outline" className="group">
-                  Learn More
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-electric/20 rounded-full blur-xl animate-pulse" />
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-accent/20 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
-            </div>
-          </div>
-
-          {/* Product Navigation */}
-          <div className={`space-y-6 transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            {products.map((product, index) => (
-              <div
-                key={product.id}
-                className={`relative cursor-pointer transition-all duration-500 ${
-                  index === activeProduct ? 'scale-105' : 'hover:scale-102'
-                }`}
-                onClick={() => setActiveProduct(index)}
-              >
-                {/* Progress Bar */}
-                {index === activeProduct && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-electric rounded-full">
-                    <div className="w-full bg-electric-bright rounded-full animate-blockchain-flow" />
-                  </div>
-                )}
-
-                <div className={`glass-effect rounded-xl p-6 border transition-all duration-300 ${
-                  index === activeProduct 
-                    ? 'border-electric/40 bg-electric/5' 
-                    : 'border-electric/10 hover:border-electric/20'
+      {/* Product Storyline */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="space-y-32">
+          {products.map((product, index) => (
+            <div
+              key={product.id}
+              ref={(el) => { productRefs.current[product.id] = el; }}
+              data-product-id={product.id}
+              className={`relative ${index % 2 === 0 ? '' : 'lg:flex-row-reverse'} lg:flex items-center gap-16`}
+            >
+              {/* Product Content */}
+              <div className={`flex-1 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'}`}>
+                <div className={`transform transition-all duration-1000 ${
+                  visibleProducts.has(product.id) 
+                    ? 'fade-in-left' 
+                    : 'opacity-0 translate-x-10'
                 }`}>
-                  <div className="flex items-center gap-4">
-                    <div className={`flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${product.color} ${
-                      index === activeProduct ? 'animate-glow-pulse' : ''
-                    }`}>
-                      {product.icon}
-                    </div>
-                    
-                    <div className="flex-1">
-                      <h4 className={`font-semibold text-lg ${
-                        index === activeProduct ? 'text-electric' : 'text-foreground'
-                      }`}>
-                        {product.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {product.tagline}
-                      </p>
+                  {/* Product Badge */}
+                  <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${product.bgColor} ${product.accentColor} text-sm font-medium mb-6`}>
+                    {product.icon}
+                    {product.tagline}
+                  </div>
+
+                  {/* Product Title */}
+                  <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                    {product.name}
+                  </h3>
+
+                  {/* Product Description */}
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {product.longDescription}
+                  </p>
+
+                  {/* Benefits List */}
+                  <div className="space-y-4 mb-8">
+                    {product.benefits.map((benefit, benefitIndex) => (
+                      <div 
+                        key={benefitIndex}
+                        className={`flex items-center gap-3 transform transition-all duration-500 ${
+                          visibleProducts.has(product.id) 
+                            ? 'fade-in-left' 
+                            : 'opacity-0 translate-x-10'
+                        }`}
+                        style={{ animationDelay: `${benefitIndex * 100 + 300}ms` }}
+                      >
+                        <CheckCircle className={`w-5 h-5 ${product.accentColor} flex-shrink-0`} />
+                        <span className="text-gray-700">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button className="group bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white px-6 py-3">
+                    Learn More
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Product Visualization */}
+              <div className={`flex-1 ${index % 2 === 0 ? 'lg:pl-8' : 'lg:pr-8'}`}>
+                <div className={`transform transition-all duration-1000 delay-300 ${
+                  visibleProducts.has(product.id) 
+                    ? 'fade-in-right' 
+                    : 'opacity-0 translate-x-10'
+                }`}>
+                  <div className={`relative ${product.bgColor} rounded-3xl p-12 border border-gray-200 shadow-lg`}>
+                    {/* Product Icon */}
+                    <div className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br ${product.color} mb-8 shadow-lg`}>
+                      <div className="text-white">
+                        {product.icon}
+                      </div>
                     </div>
 
-                    {index === activeProduct && (
-                      <div className="text-electric animate-pulse">
-                        <ArrowRight className="w-5 h-5" />
-                      </div>
-                    )}
+                    {/* Product Name */}
+                    <h4 className="text-2xl font-bold text-foreground mb-4">
+                      {product.name}
+                    </h4>
+
+                    {/* Product Description */}
+                    <p className="text-gray-600 leading-relaxed mb-6">
+                      {product.description}
+                    </p>
+
+                    {/* Floating Elements */}
+                    <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full blur-xl opacity-60" />
+                    <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full blur-lg opacity-60" />
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Bottom CTA */}
-      <div className={`relative z-10 max-w-6xl mx-auto px-6 text-center mt-20 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-        <h3 className="text-3xl font-bold text-foreground mb-4">
-          Ready to experience the future?
-        </h3>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Join thousands of innovators already building on the TransX ecosystem.
-        </p>
-        <Button variant="hero" size="lg" className="group">
-          Start Your Journey
-          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-        </Button>
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center mt-32">
+        <div className="glass-effect rounded-3xl p-12 border border-gray-200">
+          <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            Ready to Transform Your Organization?
+          </h3>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            Join forward-thinking organizations already leveraging the TransX ecosystem to drive innovation, 
+            enhance security, and create transparent operations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white px-8 py-4 text-lg">
+              Start Your Journey
+              <ArrowRight className="ml-2" />
+            </Button>
+            <Button variant="outline" size="lg" className="border-2 border-gray-300 hover:border-blue-500 transition-all duration-300 px-8 py-4 text-lg">
+              Schedule a Demo
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );

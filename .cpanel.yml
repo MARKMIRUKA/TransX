@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/xuremico/repos/transx-future-unleashed
+    - /bin/cp -r * $DEPLOYPATH 

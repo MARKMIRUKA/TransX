@@ -17,24 +17,24 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="Blockchain Network" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
       </div>
 
-      {/* Neural Grid Background */}
-      <div className="absolute inset-0 neural-grid opacity-30" />
+      {/* Professional Grid Background */}
+      <div className="absolute inset-0 professional-grid opacity-30" />
 
-      {/* Floating Particles */}
+      {/* Subtle Floating Elements */}
       <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-electric rounded-full opacity-60 animate-neural-pulse"
+            className="absolute w-1 h-1 bg-blue-500 rounded-full opacity-40 animate-pulse"
             style={{
-              left: `${20 + i * 12}%`,
-              top: `${30 + (i % 3) * 20}%`,
-              animationDelay: `${i * 0.5}s`,
+              left: `${15 + i * 15}%`,
+              top: `${25 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.8}s`,
             }}
           />
         ))}
@@ -43,52 +43,59 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Logo */}
-        <div className={`mb-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-electric to-accent mb-6 glow-pulse">
-            <span className="text-2xl font-bold text-background">TΞX</span>
+        <div className={`mb-12 transform transition-all duration-1000 ${isVisible ? 'scale-in' : 'scale-0 opacity-0'}`}>
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-primary mb-8 shadow-lg">
+            <span className="text-3xl font-bold text-white">TΞX</span>
           </div>
         </div>
 
         {/* Main Headline */}
-        <h1 className={`text-6xl md:text-8xl font-bold mb-6 gradient-text transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          THE FUTURE OF
+        <h1 className={`text-5xl md:text-7xl font-bold mb-8 text-foreground transform transition-all duration-1000 delay-300 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          TRANSFORMING
           <br />
-          <span className="glow-text">BLOCKCHAIN</span>
+          <span className="text-gradient">BLOCKCHAIN</span>
+          <br />
+          TECHNOLOGY
         </h1>
 
         {/* Subtitle */}
-        <p className={`text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          Revolutionary blockchain solutions that rewrite the rules. 
+        <p className={`text-xl md:text-2xl text-muted-foreground mb-10 max-w-4xl mx-auto leading-relaxed transform transition-all duration-1000 delay-500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          Empowering organizations with enterprise-grade blockchain solutions that drive innovation, 
           <br />
-          <span className="text-electric font-semibold">Built by TransX. Powered by innovation.</span>
+          <span className="text-blue-600 font-semibold">enhance security, and create transparent ecosystems.</span>
         </p>
 
         {/* CTA Buttons */}
-        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <Button variant="waitlist" size="lg" className="group">
-            Join the Waitlist
+        <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 transform transition-all duration-1000 delay-700 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <Button size="lg" className="group bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white px-8 py-4 text-lg">
+            Explore Solutions
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button variant="neural" size="lg" className="group">
+          <Button variant="outline" size="lg" className="group border-2 border-gray-300 hover:border-blue-500 transition-all duration-300 px-8 py-4 text-lg">
             <Play className="mr-2 group-hover:scale-110 transition-transform" />
-            Watch Demo
+            Watch Overview
           </Button>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className={`transform transition-all duration-1000 delay-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <p className="text-sm text-gray-500 mb-4">Trusted by leading organizations worldwide</p>
+          <div className="flex justify-center items-center gap-8 opacity-60">
+            <div className="w-20 h-8 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-24 h-8 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-16 h-8 bg-gray-200 rounded animate-pulse"></div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className={`transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transform transition-all duration-1000 delay-1200 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
           <div className="animate-bounce">
-            <div className="w-6 h-10 border-2 border-electric/50 rounded-full mx-auto">
-              <div className="w-1 h-3 bg-electric rounded-full mx-auto mt-2 animate-pulse" />
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full mx-auto">
+              <div className="w-1 h-3 bg-gray-400 rounded-full mx-auto mt-2 animate-pulse" />
             </div>
           </div>
-          <p className="text-sm text-muted-foreground mt-2">Scroll to explore our ecosystem</p>
+          <p className="text-sm text-gray-500 mt-2">Discover our ecosystem</p>
         </div>
-      </div>
-
-      {/* Scanning Lines Effect */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="scanning-line w-full h-full" />
       </div>
     </section>
   );

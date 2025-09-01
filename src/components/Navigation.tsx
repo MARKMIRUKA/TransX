@@ -24,16 +24,16 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-electric/20' : 'bg-transparent'
+      isScrolled ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-electric to-accent flex items-center justify-center glow-pulse">
-              <span className="text-lg font-bold text-background">TΞX</span>
+            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center shadow-md">
+              <span className="text-lg font-bold text-white">TΞX</span>
             </div>
-            <span className="text-xl font-bold gradient-text">TransX</span>
+            <span className="text-xl font-bold text-foreground">TransX</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -42,7 +42,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-electric transition-colors duration-200 font-medium"
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-200 font-medium"
               >
                 {item.name}
               </a>
@@ -55,7 +55,7 @@ const Navigation = () => {
               href="https://linkedin.com/showcase/transxinc"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-electric transition-colors duration-200"
+              className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
             >
               <ExternalLink className="w-5 h-5" />
             </a>
@@ -63,12 +63,12 @@ const Navigation = () => {
               href="https://www.instagram.com/_trans_x_"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-electric transition-colors duration-200"
+              className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
             >
               <ExternalLink className="w-5 h-5" />
             </a>
-            <Button variant="waitlist" size="sm">
-              Join Waitlist
+            <Button className="bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white">
+              Get Started
             </Button>
           </div>
 
@@ -83,39 +83,39 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-electric/20 mt-2 pt-4 pb-6 bg-background/95 backdrop-blur-lg rounded-b-lg">
+          <div className="md:hidden border-t border-gray-200 mt-2 pt-4 pb-6 bg-white/95 backdrop-blur-lg rounded-b-lg shadow-lg">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-electric transition-colors duration-200 font-medium py-2"
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <div className="flex items-center gap-4 pt-4 border-t border-electric/20">
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
                 <a
                   href="https://linkedin.com/showcase/transxinc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-electric transition-colors duration-200"
+                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                 >
-                  LinkedIn
+                  <ExternalLink className="w-5 h-5" />
                 </a>
                 <a
                   href="https://www.instagram.com/_trans_x_"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-electric transition-colors duration-200"
+                  className="text-gray-500 hover:text-blue-600 transition-colors duration-200"
                 >
-                  Instagram
+                  <ExternalLink className="w-5 h-5" />
                 </a>
+                <Button className="bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white w-full">
+                  Get Started
+                </Button>
               </div>
-              <Button variant="waitlist" className="mt-4">
-                Join Waitlist
-              </Button>
             </div>
           </div>
         )}
