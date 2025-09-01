@@ -18,12 +18,26 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				mono: ['Space Grotesk', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				electric: {
+					DEFAULT: 'hsl(var(--electric))',
+					bright: 'hsl(var(--electric-bright))',
+					dim: 'hsl(var(--electric-dim))',
+				},
+				surface: {
+					DEFAULT: 'hsl(var(--surface))',
+					elevated: 'hsl(var(--surface-elevated))',
+					glass: 'hsl(var(--surface-glass))',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -50,8 +64,11 @@ export default {
 				},
 				card: {
 					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					foreground: 'hsl(var(--card-foreground))',
+					glass: 'hsl(var(--card-glass))',
 				},
+				success: 'hsl(var(--success))',
+				warning: 'hsl(var(--warning))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +101,39 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'neural-pulse': {
+					'0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+					'50%': { opacity: '1', transform: 'scale(1.05)' }
+				},
+				'slide-up': {
+					'0%': { opacity: '0', transform: 'translateY(50px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px hsl(var(--electric) / 0.3)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 40px hsl(var(--electric) / 0.6)' 
+					}
+				},
+				'blockchain-flow': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100vw)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'neural-pulse': 'neural-pulse 3s ease-in-out infinite',
+				'slide-up': 'slide-up 0.6s ease-out',
+				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+				'blockchain-flow': 'blockchain-flow 4s linear infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'neural-net': 'radial-gradient(circle at 25% 25%, hsl(var(--electric) / 0.2) 0%, transparent 50%), radial-gradient(circle at 75% 75%, hsl(var(--accent) / 0.2) 0%, transparent 50%)'
 			}
 		}
 	},
