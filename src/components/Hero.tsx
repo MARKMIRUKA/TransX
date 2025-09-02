@@ -12,7 +12,7 @@ const Hero = () => {
 
   const products = [
     { icon: <Shield className="w-5 h-5" />, name: 'Oversight', color: 'from-red-500 to-orange-500' },
-            { icon: <Zap className="w-5 h-5" />, name: 'TEX', color: 'from-blue-500 to-purple-600' },
+            { icon: <Zap className="w-5 h-5" />, name: 'TransX', color: 'from-blue-500 to-purple-600' },
     { icon: <Globe className="w-5 h-5" />, name: 'Warex', color: 'from-green-500 to-emerald-600' },
     { icon: <Sprout className="w-5 h-5" />, name: 'FarmX', color: 'from-lime-500 to-green-600' },
   ];

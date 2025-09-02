@@ -33,7 +33,7 @@ const FinalImpact = () => {
 
   const products = [
     { icon: <Shield className="w-8 h-8" />, name: 'Oversight', angle: 0, color: 'from-red-500 to-orange-500' },
-            { icon: <Zap className="w-8 h-8" />, name: 'TEX', angle: 90, color: 'from-blue-500 to-purple-600' },
+            { icon: <Zap className="w-8 h-8" />, name: 'TransX', angle: 90, color: 'from-blue-500 to-purple-600' },
     { icon: <Globe className="w-8 h-8" />, name: 'Warex', angle: 180, color: 'from-green-500 to-emerald-600' },
     { icon: <Sprout className="w-8 h-8" />, name: 'FarmX', angle: 270, color: 'from-lime-500 to-green-600' },
   ];
@@ -103,7 +103,7 @@ const FinalImpact = () => {
           </h2>
           
           <h3 className={`text-2xl md:text-3xl font-semibold text-muted-foreground mb-8 transform transition-all duration-1000 delay-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-            Built by TEX. Trusted by the world.
+            Built by TransX. Trusted by the world.
           </h3>
 
           <p className={`text-xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed transform transition-all duration-1000 delay-1500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
@@ -135,7 +135,7 @@ const FinalImpact = () => {
 
         {/* Key Benefits */}
         <div className={`mb-16 transform transition-all duration-1000 delay-2500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h4 className="text-2xl font-semibold text-foreground mb-8">Why Organizations Choose TEX</h4>
+          <h4 className="text-2xl font-semibold text-foreground mb-8">Why Organizations Choose TransX</h4>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
               'Enterprise-grade security and compliance',
@@ -158,7 +158,7 @@ const FinalImpact = () => {
               Ready to Lead the Blockchain Revolution?
             </h3>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join the elite group of organizations that are already transforming their operations with TEX technology.
+              Join the elite group of organizations that are already transforming their operations with TransX technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white px-8 py-4 text-lg">

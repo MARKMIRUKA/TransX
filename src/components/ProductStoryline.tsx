@@ -34,11 +34,11 @@ const products: Product[] = [
     accentColor: 'text-orange-primary'
   },
   {
-    id: 'tex',
-    name: 'TEX Chain',
+    id: 'transx',
+    name: 'TransX Chain',
     tagline: 'The Chain That Rewrites the Rules',
     description: 'Next-generation Layer 1 blockchain powering the future of decentralized applications.',
-          longDescription: 'TEX Chain is built from the ground up for enterprise use cases, offering unprecedented speed, security, and scalability. Our innovative consensus mechanism ensures fast finality while maintaining true decentralization and providing the backbone for the entire TEX ecosystem.',
+          longDescription: 'TransX Chain is built from the ground up for enterprise use cases, offering unprecedented speed, security, and scalability. Our innovative consensus mechanism ensures fast finality while maintaining true decentralization and providing the backbone for the entire TransX ecosystem.',
     benefits: [
       '100,000+ transactions per second with linear scaling',
       'Sub-second finality with Byzantine fault tolerance',
@@ -261,7 +261,7 @@ const ProductStoryline = () => {
             </h3>
             
             <p className="text-body text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              Join forward-thinking organizations already leveraging the TEX ecosystem to drive innovation, 
+              Join forward-thinking organizations already leveraging the TransX ecosystem to drive innovation, 
               <br />
               <span className="text-blue-primary font-semibold">enhance security, and create transparent operations.</span>
             </p>
