@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/xuremico/repos/transx-future-unleashed
+    - export DEPLOYPATH=/home2/xuremico/repos/tex-future-unleashed
     - /bin/cp -r * $DEPLOYPATH 

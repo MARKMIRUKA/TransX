@@ -11,7 +11,7 @@ const Footer = () => {
               <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center shadow-lg">
                 <span className="text-xl font-bold text-white">TΞX</span>
               </div>
-              <span className="text-2xl font-bold text-white">TransX</span>
+              <span className="text-2xl font-bold text-white">TEX</span>
             </div>
             <p className="text-gray-300 max-w-md mb-6 leading-relaxed">
               Empowering organizations with enterprise-grade blockchain solutions that drive innovation, 
@@ -19,7 +19,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://linkedin.com/showcase/transxinc"
+                href="https://linkedin.com/showcase/texinc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400 transition-colors"
@@ -44,7 +44,7 @@ const Footer = () => {
             <h3 className="font-semibold text-white mb-4">Products</h3>
             <ul className="space-y-3">
               <li><a href="#oversight" className="text-gray-300 hover:text-blue-400 transition-colors">Oversight</a></li>
-              <li><a href="#transx" className="text-gray-300 hover:text-blue-400 transition-colors">TransX Chain</a></li>
+              <li><a href="#tex" className="text-gray-300 hover:text-blue-400 transition-colors">TEX Chain</a></li>
               <li><a href="#warex" className="text-gray-300 hover:text-blue-400 transition-colors">Warex</a></li>
               <li><a href="#farmx" className="text-gray-300 hover:text-blue-400 transition-colors">FarmX</a></li>
             </ul>
@@ -65,7 +65,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">
-            © 2024 TransX. All rights reserved. Building the future of blockchain technology.
+            © 2024 TEX. All rights reserved. Building the future of blockchain technology.
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#privacy" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a>
