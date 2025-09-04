@@ -1,19 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Globe, Shield, Sprout, CheckCircle, Users, TrendingUp, Award } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Globe, Sprout, Star, Sparkles, TrendingUp } from 'lucide-react';
 
 const FinalImpact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const impactMetrics = [
+    { value: '$50B+', label: 'Transaction Volume', icon: <TrendingUp className="w-6 h-6" />, color: 'text-green-primary' },
+    { value: '150+', label: 'Enterprise Clients', icon: <Star className="w-6 h-6" />, color: 'text-blue-primary' },
+    { value: '99.99%', label: 'Security Rate', icon: <Shield className="w-6 h-6" />, color: 'text-orange-primary' },
+    { value: '24/7', label: 'Global Support', icon: <Globe className="w-6 h-6" />, color: 'text-purple-primary' },
+  ];
+
+  const productIcons = [
+    { icon: <Shield className="w-8 h-8" />, name: 'Oversight', color: 'from-orange-400 to-red-500' },
+    { icon: <Zap className="w-8 h-8" />, name: 'TransX Chain', color: 'from-blue-500 to-purple-600' },
+    { icon: <Globe className="w-8 h-8" />, name: 'Warex', color: 'from-green-500 to-emerald-600' },
+    { icon: <Sprout className="w-8 h-8" />, name: 'FarmX', color: 'from-lime-500 to-green-600' },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          setTimeout(() => setAnimatedStats(true), 1000);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
       },
       { threshold: 0.3 }
     );
@@ -25,153 +40,162 @@ const FinalImpact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const stats = [
-    { icon: <Users className="w-8 h-8" />, number: '500+', label: 'Enterprise Clients', color: 'text-blue-600' },
-    { icon: <TrendingUp className="w-8 h-8" />, number: '99.9%', label: 'Uptime Guarantee', color: 'text-green-600' },
-    { icon: <Award className="w-8 h-8" />, number: '50+', label: 'Industry Awards', color: 'text-purple-600' },
-  ];
-
-  const products = [
-    { icon: <Shield className="w-8 h-8" />, name: 'Oversight', angle: 0, color: 'from-red-500 to-orange-500' },
-            { icon: <Zap className="w-8 h-8" />, name: 'TransX', angle: 90, color: 'from-blue-500 to-purple-600' },
-    { icon: <Globe className="w-8 h-8" />, name: 'Warex', angle: 180, color: 'from-green-500 to-emerald-600' },
-    { icon: <Sprout className="w-8 h-8" />, name: 'FarmX', angle: 270, color: 'from-lime-500 to-green-600' },
-  ];
+  useEffect(() => {
+    if (isVisible) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % productIcons.length);
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [isVisible, productIcons.length]);
 
   return (
-    <section ref={sectionRef} className="min-h-screen bg-gradient-to-b from-background to-gray-50 flex items-center justify-center relative overflow-hidden py-20">
-      {/* Background Pattern */}
+    <section ref={sectionRef} className="relative min-h-screen bg-background overflow-hidden py-6xl">
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 professional-grid opacity-20" />
-        {[...Array(30)].map((_, i) => (
+        <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
+        <div className="absolute inset-0 modern-grid opacity-[0.03]" />
+      </div>
+
+      {/* Floating Product Icons Animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        {productIcons.map((product, index) => (
           <div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-500 rounded-full opacity-30 animate-pulse"
+            key={product.name}
+            className={`absolute transition-all duration-1000 ${
+              index === currentIndex ? 'opacity-30 scale-100' : 'opacity-10 scale-90'
+            }`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
+              left: `${20 + index * 20}%`,
+              top: `${30 + (index % 2) * 40}%`,
+              animationDelay: `${index * 0.5}s`,
             }}
-          />
+          >
+            <div className={`w-20 h-20 rounded-3xl bg-gradient-to-r ${product.color} flex items-center justify-center blur-sm hover:blur-none transition-all duration-500`}>
+              <div className="text-white opacity-60">
+                {product.icon}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        {/* Central Brand Orb */}
-        <div className={`relative mb-20 transform transition-all duration-2000 ${isVisible ? 'scale-in' : 'scale-0 opacity-0'}`}>
-          <div className="relative inline-block">
-            {/* Main Logo */}
-            <div className="w-32 h-32 rounded-full bg-gradient-primary flex items-center justify-center shadow-2xl border-4 border-white">
-              <span className="text-4xl font-bold text-white">TΞX</span>
+      <div className="relative z-10 container-wide mx-auto px-6">
+        {/* Enhanced Header Section */}
+        <div className="text-center mb-6xl">
+          <div className={`transform transition-all duration-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-primary/10 border border-blue-primary/20 mb-8">
+              <Sparkles className="w-5 h-5 text-blue-primary animate-pulse" />
+              <span className="text-blue-primary font-semibold tracking-wide uppercase text-sm">The Future is Here</span>
             </div>
+          </div>
 
-            {/* Orbiting Products */}
-            {products.map((product, index) => (
+          <h2 className={`text-display text-6xl md:text-7xl lg:text-8xl font-black mb-6 text-foreground transform transition-all duration-1000 delay-200 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+            Revolutionizing
+            <br />
+            <span className="text-gradient relative">
+              Blockchain
+              <div className="absolute -inset-4 bg-gradient-primary opacity-5 blur-3xl rounded-2xl" />
+            </span>
+            <br />
+            <span className="text-foreground">Forever</span>
+          </h2>
+
+          <p className={`text-body text-xl md:text-2xl lg:text-3xl text-neutral-600 max-w-5xl mx-auto leading-relaxed mb-8 font-medium transform transition-all duration-1000 delay-400 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+            Join the global movement transforming industries through 
+            <br />
+            <span className="text-blue-primary font-semibold">transparent, secure, and scalable blockchain technology.</span>
+          </p>
+
+          <div className={`transform transition-all duration-1000 delay-600 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+            <p className="text-lg md:text-xl text-neutral-500 max-w-3xl mx-auto mb-8">
+              Experience the future of finance, governance, agriculture, and security—all powered by the TransX ecosystem.
+            </p>
+          </div>
+        </div>
+
+        {/* Enhanced Impact Metrics */}
+        <div className={`mb-6xl transform transition-all duration-1000 delay-800 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center mb-3xl">
+            <h3 className="text-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Real Impact, Real Results
+            </h3>
+            <p className="text-body text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
+              Trusted by industry leaders worldwide to deliver measurable outcomes
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {impactMetrics.map((metric, index) => (
               <div
-                key={product.name}
-                className={`absolute w-16 h-16 rounded-xl bg-white backdrop-blur-lg border border-gray-200 flex items-center justify-center transition-all duration-1000 shadow-lg ${
-                  animatedStats ? 'animate-spin' : ''
+                key={metric.label}
+                className={`card-modern card-hover p-8 text-center group transform transition-all duration-300 ${
+                  isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'
                 }`}
-                style={{
-                  transform: `rotate(${product.angle}deg) translateX(120px) rotate(-${product.angle}deg)`,
-                  animationDuration: '20s',
-                  animationDelay: `${index * 0.5}s`,
-                }}
+                style={{ animationDelay: `${800 + index * 150}ms` }}
               >
-                <div className={`bg-gradient-to-br ${product.color} p-2 rounded-lg`}>
-                  <div className="text-white">
-                    {product.icon}
+                <div className="flex flex-col items-center space-y-4">
+                  <div className={`${metric.color} group-hover:scale-110 transition-transform duration-300`}>
+                    {metric.icon}
+                  </div>
+                  <div className="text-4xl md:text-5xl font-black text-foreground font-display">
+                    {metric.value}
+                  </div>
+                  <div className="text-base md:text-lg font-medium text-neutral-600">
+                    {metric.label}
                   </div>
                 </div>
               </div>
             ))}
-
-            {/* Pulse Rings */}
-            <div className="absolute inset-0 rounded-full border-2 border-blue-200 animate-ping" style={{ animationDuration: '3s' }} />
-            <div className="absolute inset-0 rounded-full border border-purple-200 animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
           </div>
         </div>
 
-        {/* Final Message */}
-        <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl md:text-7xl font-bold text-foreground mb-8">
-            THE FUTURE OF
-            <br />
-            <span className="text-gradient">BLOCKCHAIN</span>
-            <br />
-            IS HERE
-          </h2>
-          
-          <h3 className={`text-2xl md:text-3xl font-semibold text-muted-foreground mb-8 transform transition-all duration-1000 delay-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-            Built by TransX. Trusted by the world.
-          </h3>
-
-          <p className={`text-xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed transform transition-all duration-1000 delay-1500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-            Our integrated ecosystem represents the pinnacle of blockchain innovation, combining cutting-edge technology 
-            with enterprise-grade reliability. We're not just building the future—we're defining it.
-          </p>
-        </div>
-
-        {/* Impact Statistics */}
-        <div className={`grid md:grid-cols-3 gap-8 mb-16 transform transition-all duration-1000 delay-2000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className="glass-effect rounded-2xl p-8 border border-gray-200 card-hover"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gray-100 mb-6 ${stat.color}`}>
-                {stat.icon}
+        {/* Enhanced CTA Section */}
+        <div className={`text-center transform transition-all duration-1000 delay-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <div className="glass-strong rounded-3xl p-3xl max-w-5xl mx-auto border border-neutral-200 shadow-2xl relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-primary rounded-full blur-3xl opacity-10" />
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-secondary rounded-full blur-3xl opacity-10" />
+            
+            <div className="relative z-10 space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-primary/10 text-blue-primary text-sm font-medium tracking-wide uppercase">
+                <div className="w-2 h-2 rounded-full bg-blue-primary animate-pulse" />
+                Ready to Transform?
               </div>
-              <div className={`text-4xl font-bold ${stat.color} mb-2`}>
-                {stat.number}
+              
+              <h3 className="text-display text-4xl md:text-5xl lg:text-6xl font-black text-foreground">
+                Start Your Blockchain
+                <br />
+                <span className="text-gradient">Journey Today</span>
+              </h3>
+              
+              <p className="text-body text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of forward-thinking organizations already leveraging the TransX ecosystem to drive innovation, enhance security, and create transparent operations.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4">
+                <Button size="lg" className="group btn-primary px-12 py-5 text-xl font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                  Join the Waitlist
+                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button variant="outline" size="lg" className="btn-outline px-12 py-5 text-xl font-medium rounded-2xl">
+                  Schedule Consultation
+                </Button>
               </div>
-              <div className="text-gray-600 font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Key Benefits */}
-        <div className={`mb-16 transform transition-all duration-1000 delay-2500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h4 className="text-2xl font-semibold text-foreground mb-8">Why Organizations Choose TransX</h4>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              'Enterprise-grade security and compliance',
-              'Seamless integration with existing systems',
-              '24/7 expert support and consultation',
-              'Proven track record of success'
-            ].map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="text-gray-700">{benefit}</span>
+              <div className="pt-8 border-t border-neutral-200">
+                <p className="text-sm text-neutral-500 font-medium">
+                  Trusted by 150+ enterprises • $50B+ in transactions secured • 99.99% uptime
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Final CTA */}
-        <div className={`transform transition-all duration-1000 delay-3000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="glass-effect rounded-3xl p-12 border border-gray-200 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold text-foreground mb-6">
-              Ready to Lead the Blockchain Revolution?
-            </h3>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join the elite group of organizations that are already transforming their operations with TransX technology.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-lg transition-all duration-300 text-white px-8 py-4 text-lg">
-                Get Started Today
-                <ArrowRight className="ml-2" />
-              </Button>
-              <Button variant="outline" size="lg" className="border-2 border-gray-300 hover:border-blue-500 transition-all duration-300 px-8 py-4 text-lg">
-                Contact Sales
-              </Button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Bottom Ambient Light */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-primary rounded-full blur-3xl opacity-5" />
     </section>
   );
 };
