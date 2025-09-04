@@ -5,22 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:scale-105 active:scale-95",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-electric/25",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-blue-primary/25",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-electric/30 bg-transparent text-electric hover:bg-electric/10 hover:border-electric",
+          "border border-blue-primary/30 bg-transparent text-blue-primary hover:bg-blue-primary/10 hover:border-blue-primary hover:shadow-md",
         secondary:
-          "bg-surface-elevated text-foreground hover:bg-surface-elevated/80",
-        ghost: "hover:bg-surface-elevated hover:text-foreground",
-        link: "text-electric underline-offset-4 hover:underline hover:text-electric-bright",
-        hero: "bg-gradient-to-r from-electric to-accent text-foreground font-semibold hover:shadow-xl hover:shadow-electric/30 hover:scale-105",
-        neural: "bg-surface-glass backdrop-blur-lg border border-electric/20 text-foreground hover:border-electric/40 hover:bg-electric/10 glow-pulse",
-        waitlist: "bg-electric text-background hover:bg-electric-bright hover:shadow-lg hover:shadow-electric/40 font-semibold",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground hover:shadow-sm",
+        link: "text-blue-primary underline-offset-4 hover:underline hover:text-blue-600",
       },
       size: {
         default: "h-10 px-4 py-2",
