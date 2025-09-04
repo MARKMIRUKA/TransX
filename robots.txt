@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Important pages
+Allow: /
+Allow: /#oversight
+Allow: /#transx
+Allow: /#warex
+Allow: /#farmx
+
+# Block unnecessary crawling
+Disallow: /dist/
+Disallow: /src/
+Disallow: /node_modules/
