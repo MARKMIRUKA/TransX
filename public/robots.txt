@@ -1,19 +1,35 @@
-# TransX - The Future of Blockchain Technology
+# TransX - Revolutionary Blockchain Technology
 # https://www.robotstxt.org/robotstxt.html
 
+User-agent: *
+Allow: /
+
+# Allow important crawlers
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
 Allow: /
 
 # Disallow admin and sensitive areas
@@ -22,14 +38,32 @@ Disallow: /private/
 Disallow: /.htaccess
 Disallow: /package.json
 Disallow: /package-lock.json
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dist/
+Disallow: /.git/
 
-# Allow important assets
+# Allow important assets and pages
 Allow: /assets/
 Allow: /tex-logo.svg
 Allow: /favicon.ico
+Allow: /sitemap.xml
 
-# Crawl delay (optional)
+# Important pages for crawling
+Allow: /#oversight
+Allow: /#transx
+Allow: /#warex
+Allow: /#farmx
+Allow: /#products
+Allow: /#platform
+Allow: /#solutions
+Allow: /#company
+
+# Crawl delay (be respectful to servers)
 Crawl-delay: 1
 
-# Sitemap (update with your actual domain)
-Sitemap: https://yourdomain.com/sitemap.xml
+# Sitemap location
+Sitemap: https://transx.dev/sitemap.xml
+
+# Host directive (helps with canonicalization)
+Host: https://transx.dev

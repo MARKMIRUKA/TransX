@@ -116,7 +116,7 @@ const ProductStoryline = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-background relative overflow-hidden py-6xl">
+    <section className="min-h-screen bg-background relative overflow-hidden py-6xl" aria-label="TransX Product Ecosystem">
       {/* Enhanced Background */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
       <div className="absolute inset-0 modern-grid opacity-15" />
@@ -150,11 +150,12 @@ const ProductStoryline = () => {
       <div className="relative z-10 container-wide mx-auto px-6">
         <div className="space-y-6xl">
           {products.map((product, index) => (
-            <div
+            <article
               key={product.id}
               ref={(el) => { productRefs.current[product.id] = el; }}
               data-product-id={product.id}
               className={`relative ${index % 2 === 0 ? '' : 'lg:flex-row-reverse'} lg:flex items-center gap-5xl`}
+              aria-labelledby={`${product.id}-title`}
             >
               {/* Enhanced Product Content */}
               <div className={`flex-1 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
@@ -165,12 +166,12 @@ const ProductStoryline = () => {
                 }`}>
                   {/* Enhanced Product Badge */}
                   <div className={`inline-flex items-center gap-3 px-6 py-3 rounded-2xl ${product.bgColor} ${product.accentColor} text-base font-semibold border border-current/20`}>
-                    {product.icon}
+                    <div aria-hidden="true">{product.icon}</div>
                     {product.tagline}
                   </div>
 
                   {/* Enhanced Product Title */}
-                  <h3 className="text-display text-5xl md:text-6xl lg:text-7xl font-black text-foreground">
+                  <h3 id={`${product.id}-title`} className="text-display text-5xl md:text-6xl lg:text-7xl font-black text-foreground">
                     {product.name}
                   </h3>
 
@@ -181,24 +182,28 @@ const ProductStoryline = () => {
 
                   {/* Enhanced Benefits List */}
                   <div className="content-stack">
+                    <h4 className="sr-only">Key Benefits of {product.name}</h4>
                     {product.benefits.map((benefit, benefitIndex) => (
                       <div 
                         key={benefitIndex}
-                        className={`flex items-start gap-4 p-4 rounded-xl hover:bg-neutral-50 transition-all duration-300 transform ${
+                        className={`flex items-start gap-4 p-4 rounded-xl hover:bg-neutral-50 hover:scale-102 transition-all duration-300 transform ${
                           visibleProducts.has(product.id) 
                             ? 'fade-in-left' 
                             : 'opacity-0 translate-x-10'
                         }`}
                         style={{ animationDelay: `${benefitIndex * 100 + 300}ms` }}
                       >
-                        <CheckCircle className={`w-6 h-6 ${product.accentColor} flex-shrink-0 mt-1`} />
+                        <CheckCircle className={`w-6 h-6 ${product.accentColor} flex-shrink-0 mt-1`} aria-hidden="true" />
                         <span className="text-body text-lg text-neutral-700 leading-relaxed">{benefit}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Enhanced CTA Button */}
-                  <Button className="btn-primary group px-8 py-4 text-lg font-semibold rounded-xl">
+                  <Button 
+                    className="btn-primary group px-8 py-4 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300"
+                    aria-label={`Learn more about ${product.name} blockchain solution`}
+                  >
                     Learn More About {product.name}
                     <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -212,10 +217,10 @@ const ProductStoryline = () => {
                     ? 'fade-in-right' 
                     : 'opacity-0 translate-x-10'
                 }`}>
-                  <div className={`card-modern ${product.bgColor} p-3xl shadow-2xl border-0 overflow-hidden relative group`}>
+                  <div className={`card-modern ${product.bgColor} p-3xl shadow-2xl border-0 overflow-hidden relative group hover:scale-105 transition-all duration-500`}>
                     {/* Enhanced Product Icon */}
                     <div className={`inline-flex items-center justify-center w-28 h-28 rounded-3xl bg-gradient-to-br ${product.color} mb-2xl shadow-2xl border border-white/20 group-hover:scale-105 transition-transform duration-300`}>
-                      <div className="text-white">
+                      <div className="text-white" aria-hidden="true">
                         {product.icon}
                       </div>
                     </div>
@@ -237,14 +242,14 @@ const ProductStoryline = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
 
       {/* Enhanced Bottom CTA */}
       <div className="relative z-10 container-medium mx-auto px-6 text-center mt-6xl">
-        <div className="glass-strong rounded-3xl p-3xl border border-neutral-200 shadow-2xl relative overflow-hidden">
+        <div className="glass-strong rounded-3xl p-3xl border border-neutral-200 shadow-2xl relative overflow-hidden hover:scale-102 transition-all duration-500">
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-mesh opacity-5" />
           
@@ -267,11 +272,20 @@ const ProductStoryline = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button size="lg" className="btn-primary px-10 py-5 text-xl font-semibold rounded-2xl">
+              <Button 
+                size="lg" 
+                className="btn-primary px-10 py-5 text-xl font-semibold rounded-2xl hover:scale-105 transition-all duration-300"
+                aria-label="Start your blockchain transformation journey with TransX"
+              >
                 Start Your Journey
                 <ArrowRight className="ml-3 w-6 h-6" />
               </Button>
-              <Button variant="outline" size="lg" className="btn-outline px-10 py-5 text-xl font-medium rounded-2xl">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="btn-outline px-10 py-5 text-xl font-medium rounded-2xl hover:scale-105 transition-all duration-300"
+                aria-label="Schedule a personalized demo of TransX platform"
+              >
                 Schedule a Demo
               </Button>
             </div>

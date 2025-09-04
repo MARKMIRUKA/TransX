@@ -50,7 +50,7 @@ const FinalImpact = () => {
   }, [isVisible, productIcons.length]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-background overflow-hidden py-6xl">
+    <section ref={sectionRef} className="relative min-h-screen bg-background overflow-hidden py-6xl" aria-label="TransX Impact and Call to Action">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
@@ -125,17 +125,19 @@ const FinalImpact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto" role="list" aria-label="TransX platform impact metrics">
             {impactMetrics.map((metric, index) => (
               <div
                 key={metric.label}
-                className={`card-modern card-hover p-8 text-center group transform transition-all duration-300 ${
+                className={`card-modern card-hover p-8 text-center group transform transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                   isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ animationDelay: `${800 + index * 150}ms` }}
+                role="listitem"
+                aria-label={`${metric.value} ${metric.label}`}
               >
                 <div className="flex flex-col items-center space-y-4">
-                  <div className={`${metric.color} group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`${metric.color} group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
                     {metric.icon}
                   </div>
                   <div className="text-4xl md:text-5xl font-black text-foreground font-display">
@@ -152,7 +154,7 @@ const FinalImpact = () => {
 
         {/* Enhanced CTA Section */}
         <div className={`text-center transform transition-all duration-1000 delay-1000 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="glass-strong rounded-3xl p-3xl max-w-5xl mx-auto border border-neutral-200 shadow-2xl relative overflow-hidden">
+          <div className="glass-strong rounded-3xl p-3xl max-w-5xl mx-auto border border-neutral-200 shadow-2xl relative overflow-hidden hover:scale-102 transition-all duration-500">
             {/* Background decoration */}
             <div className="absolute inset-0 bg-gradient-mesh opacity-10" />
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-primary rounded-full blur-3xl opacity-10" />
@@ -175,18 +177,29 @@ const FinalImpact = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4">
-                <Button size="lg" className="group btn-primary px-12 py-5 text-xl font-semibold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                <Button 
+                  size="lg" 
+                  className="group btn-primary px-12 py-5 text-xl font-semibold rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  aria-label="Join the TransX waitlist to get early access to our blockchain platform"
+                >
                   Join the Waitlist
                   <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button variant="outline" size="lg" className="btn-outline px-12 py-5 text-xl font-medium rounded-2xl">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="btn-outline px-12 py-5 text-xl font-medium rounded-2xl hover:scale-105 transition-all duration-300"
+                  aria-label="Schedule a consultation to discuss your blockchain needs"
+                >
                   Schedule Consultation
                 </Button>
               </div>
 
               <div className="pt-8 border-t border-neutral-200">
                 <p className="text-sm text-neutral-500 font-medium">
-                  Trusted by 150+ enterprises • $50B+ in transactions secured • 99.99% uptime
+                  <span aria-label="Trusted by over 150 enterprises">Trusted by 150+ enterprises</span> • 
+                  <span aria-label="Over 50 billion dollars in transactions secured">$50B+ in transactions secured</span> • 
+                  <span aria-label="99.99% uptime guarantee">99.99% uptime</span>
                 </p>
               </div>
             </div>
