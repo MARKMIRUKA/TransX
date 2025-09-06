@@ -65,6 +65,9 @@
     --neutral-900: 0 0% 9%;
     --neutral-950: 0 0% 4%;
     
+    /* Core dark background */
+    --dark: 240 10% 3.9%;
+    
     /* Brand colors */
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 8%;
