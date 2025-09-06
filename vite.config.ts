@@ -35,8 +35,8 @@ export default defineConfig(({ mode }) => ({
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
         },
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name?.split('.') || ['', 'js'];
-          const ext = info[info.length - 1];
+          const info = assetInfo.name?.split('.');
+          const ext = info?.[info.length - 1] || '';
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
           }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ExternalLink, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Menu, X, ExternalLink, Linkedin, Instagram } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,8 +50,8 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Enhanced Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8" role="menubar">
+          {/* Enhanced Desktop Navigation - Moved to right */}
+          <div className="hidden md:flex items-center gap-8 ml-auto mr-6" role="menubar">
             {navItems.map((item) => (
               <a
                 key={item.name}
