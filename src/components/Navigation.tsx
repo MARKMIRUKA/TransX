@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ExternalLink, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Menu, X, ExternalLink, Linkedin, Instagram } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
