@@ -152,7 +152,7 @@ const ProductStoryline = () => {
           {products.map((product, index) => (
             <article
               key={product.id}
-              ref={(el) => { productRefs.current[product.id] = el; }}
+              ref={(el: HTMLDivElement | null) => { productRefs.current[product.id] = el; }}
               data-product-id={product.id}
               className={`relative ${index % 2 === 0 ? '' : 'lg:flex-row-reverse'} lg:flex items-center gap-5xl`}
               aria-labelledby={`${product.id}-title`}

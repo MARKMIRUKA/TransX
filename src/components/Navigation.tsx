@@ -50,8 +50,8 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Enhanced Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8" role="menubar">
+          {/* Enhanced Desktop Navigation - Moved to right */}
+          <div className="hidden md:flex items-center gap-8 ml-auto mr-6" role="menubar">
             {navItems.map((item) => (
               <a
                 key={item.name}

@@ -84,20 +84,39 @@ const Hero = () => {
         {/* Dynamic Main Headline */}
         <div className="mb-8">
           <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black mb-4 text-foreground font-display transform transition-all duration-1000 delay-300 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-            <span className="block overflow-hidden">
+            <span className="block overflow-hidden relative">
               <span 
-                className="inline-block transition-transform duration-700 ease-in-out text-gradient"
-                style={{ transform: `translateY(-${currentWord * 100}%)` }}
+                className="inline-block transition-all duration-1000 ease-out text-gradient transform"
+                style={{ 
+                  transform: `translateY(-${currentWord * 100}%)`,
+                  filter: 'brightness(1.1)',
+                  textShadow: '0 0 30px rgba(59, 130, 246, 0.5)'
+                }}
               >
                 {dynamicWords.map((word, index) => (
-                  <span key={word} className="block" style={{ lineHeight: '1.1' }}>
+                  <span 
+                    key={word} 
+                    className={`block transition-all duration-1000 ${
+                      index === currentWord 
+                        ? 'scale-105 opacity-100' 
+                        : 'scale-100 opacity-90'
+                    }`} 
+                    style={{ 
+                      lineHeight: '1.1',
+                      animationDelay: `${index * 200}ms`
+                    }}
+                  >
                     {word}
                   </span>
                 ))}
               </span>
             </span>
-            <span className="block text-foreground">BLOCKCHAIN</span>
-            <span className="block text-foreground">INNOVATION</span>
+            <span className="block text-foreground transition-all duration-700 delay-500 hover:scale-105 hover:text-gradient transform">
+              BLOCKCHAIN
+            </span>
+            <span className="block text-foreground transition-all duration-700 delay-700 hover:scale-105 hover:text-gradient transform">
+              INNOVATION
+            </span>
           </h1>
         </div>
 
