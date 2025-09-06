@@ -35,7 +35,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background" aria-label="TransX Hero Section">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark" aria-label="TransX Hero Section">
       {/* Dark background with geometric shapes */}
       <div className="absolute inset-0 bg-dark">
         {/* Floating geometric shapes */}
@@ -52,7 +52,7 @@ const Hero = () => {
             {/* Main Headlines */}
             <div className="space-y-4">
               <h1 className="text-6xl lg:text-8xl font-black text-white leading-none">
-                <span className="text-accent">TransX</span>
+                The <span className="text-accent">TransX</span>
               </h1>
               <div className="flex items-center gap-4 text-6xl lg:text-8xl font-black text-white leading-none">
                 <span>TΞX</span>
@@ -60,8 +60,41 @@ const Hero = () => {
               </div>
             </div>
 
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-8">
+              <Button 
+                className="bg-accent text-black px-8 py-4 text-lg font-medium rounded-full hover:bg-accent/90 transition-colors duration-300"
+                aria-label="Explore TransX products"
+              >
+                Explore our products
+              </Button>
+              <Button 
+                variant="outline" 
+                className="border-white/20 text-white px-8 py-4 text-lg font-medium rounded-full hover:bg-white/10 transition-colors duration-300"
+                aria-label="Learn about TransX trustware"
+              >
+                Learn about Trustware
+              </Button>
+            </div>
+
+            {/* Scroll indicator */}
+            <div className="pt-12">
+              <div className="flex flex-col items-start">
+                <p className="text-white/60 text-sm font-medium mb-2">Scroll to explore</p>
+                <div className="w-6 h-10 border border-white/30 rounded-full flex justify-center">
+                  <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce" />
+                </div>
+              </div>
+            </div>
           </div>
 
+          {/* Right Content - Description */}
+          <div className="lg:text-right space-y-6">
+            <p className="text-xl text-white/80 max-w-lg lg:ml-auto leading-relaxed">
+              We build the tools, infrastructure, and research that power TransX—the foundation for a more secure, 
+              open, and programmable economy.
+            </p>
+          </div>
         </div>
       </div>
     </section>
