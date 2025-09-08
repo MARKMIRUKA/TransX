@@ -214,6 +214,60 @@ export default {
 						boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)",
 					},
 				},
+				"typewriter": {
+					"from": { width: "0" },
+					"to": { width: "100%" },
+				},
+				"blink": {
+					"50%": { borderColor: "transparent" },
+				},
+				"text-shimmer": {
+					"0%": { backgroundPosition: "-200% center" },
+					"100%": { backgroundPosition: "200% center" },
+				},
+				"text-reveal": {
+					"0%": {
+						opacity: "0",
+						transform: "translateY(100%)",
+					},
+					"100%": {
+						opacity: "1",
+						transform: "translateY(0)",
+					},
+				},
+				"glow-pulse": {
+					"0%, 100%": {
+						textShadow: "0 0 5px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.2)",
+					},
+					"50%": {
+						textShadow: "0 0 20px rgba(59, 130, 246, 0.5), 0 0 30px rgba(59, 130, 246, 0.3)",
+					},
+				},
+				"parallax-float": {
+					"0%, 100%": {
+						transform: "translateY(0px) rotate(0deg)",
+					},
+					"33%": {
+						transform: "translateY(-20px) rotate(2deg)",
+					},
+					"66%": {
+						transform: "translateY(-10px) rotate(-1deg)",
+					},
+				},
+				"morph-shape": {
+					"0%, 100%": {
+						borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+					},
+					"25%": {
+						borderRadius: "30% 60% 70% 40% / 50% 60% 30% 60%",
+					},
+					"50%": {
+						borderRadius: "50% 60% 30% 60% / 30% 50% 60% 40%",
+					},
+					"75%": {
+						borderRadius: "60% 40% 60% 30% / 40% 70% 30% 50%",
+					},
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -226,6 +280,14 @@ export default {
 				"slide-up-sequence": "slide-up-sequence 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards",
 				"float": "float 6s ease-in-out infinite",
 				"pulse-glow": "pulse-glow 2s ease-in-out infinite",
+				"typewriter": "typewriter 3s steps(40, end), blink 0.8s infinite",
+				"text-shimmer": "text-shimmer 3s linear infinite",
+				"text-reveal": "text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+				"glow-pulse": "glow-pulse 2s ease-in-out infinite",
+				"parallax-float": "parallax-float 8s ease-in-out infinite",
+				"parallax-slow": "parallax-float 12s ease-in-out infinite",
+				"parallax-fast": "parallax-float 6s ease-in-out infinite",
+				"morph-shape": "morph-shape 8s ease-in-out infinite",
 			},
 			backgroundImage: {
 				"gradient-primary": "linear-gradient(135deg, hsl(var(--blue-primary)), hsl(var(--purple-primary)))",
