@@ -34,7 +34,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background" aria-label="TransX Hero Section">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background" aria-label="TransX Hero Section">
       {/* Enhanced Background with Parallax Effect */}
       <div className="absolute inset-0">
         <img 
@@ -71,20 +71,19 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      {/* Main Content Container - Centered with proper spacing */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 text-center flex flex-col justify-center h-full py-16">
         {/* Enhanced Logo with Glow Effect */}
-        <div className={`mb-8 transform transition-all duration-1000 ${isVisible ? 'scale-in' : 'scale-0 opacity-0'}`}>
+        <div className={`mb-16 transform transition-all duration-1000 ${isVisible ? 'scale-in' : 'scale-0 opacity-0'}`}>
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-primary mb-6 shadow-2xl border border-white/20 relative group">
             <span className="text-3xl font-black text-white font-display tracking-tight" aria-label="TransX Logo">TΞX</span>
-            <div className="absolute inset-0 rounded-3xl bg-gradient-primary opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
           </div>
         </div>
 
-        {/* Dynamic Main Headline */}
-        <div className="mb-8">
-          <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black mb-4 text-foreground font-display transform transition-all duration-1000 delay-300 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-            <span className="block overflow-hidden relative">
+        {/* Dynamic Main Headline - Better spacing and alignment */}
+        <div className="mb-20">
+          <h1 className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-8 text-foreground font-display transform transition-all duration-1000 delay-300 leading-[0.9] ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+            <span className="block overflow-hidden relative mb-4">
               <span 
                 className="inline-block transition-all duration-1000 ease-out text-gradient transform"
                 style={{ 
@@ -102,7 +101,7 @@ const Hero = () => {
                         : 'scale-100 opacity-90'
                     }`} 
                     style={{ 
-                      lineHeight: '1.1',
+                      lineHeight: '0.9',
                       animationDelay: `${index * 200}ms`
                     }}
                   >
@@ -111,7 +110,7 @@ const Hero = () => {
                 ))}
               </span>
             </span>
-            <span className="block text-foreground transition-all duration-700 delay-500 hover:scale-105 hover:text-gradient transform">
+            <span className="block text-foreground transition-all duration-700 delay-500 hover:scale-105 hover:text-gradient transform mb-2">
               BLOCKCHAIN
             </span>
             <span className="block text-foreground transition-all duration-700 delay-700 hover:scale-105 hover:text-gradient transform">
@@ -120,21 +119,21 @@ const Hero = () => {
           </h1>
         </div>
 
-        {/* Enhanced Subtitle */}
-        <div className={`mb-12 transform transition-all duration-1000 delay-500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <p className="text-xl md:text-2xl lg:text-3xl text-neutral-600 mb-4 max-w-5xl mx-auto leading-relaxed font-medium">
-            Empowering enterprises with <span className="text-blue-primary font-semibold">next-generation blockchain solutions</span> that enhance security, drive efficiency, and enable transparent digital transformation.
+        {/* Enhanced Subtitle - Better spacing */}
+        <div className={`mb-20 transform transition-all duration-1000 delay-500 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed font-medium">
+            Empowering enterprises with <span className="text-primary font-semibold">next-generation blockchain solutions</span> that enhance security, drive efficiency, and enable transparent digital transformation.
           </p>
-          <p className="text-lg md:text-xl text-neutral-500 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
             Four integrated products. One revolutionary ecosystem. Unlimited possibilities.
           </p>
         </div>
 
-        {/* Enhanced CTA Buttons */}
-        <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 transform transition-all duration-1000 delay-700 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+        {/* Enhanced CTA Buttons - Better spacing */}
+        <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-24 transform transition-all duration-1000 delay-700 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
           <Button 
             size="lg" 
-            className="group btn-primary px-8 py-4 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            className="group btn-primary px-10 py-5 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             aria-label="Discover TransX blockchain ecosystem and products"
           >
             Discover Our Ecosystem
@@ -143,7 +142,7 @@ const Hero = () => {
           <Button 
             variant="outline" 
             size="lg" 
-            className="group btn-outline px-8 py-4 text-lg font-medium rounded-2xl hover:scale-105 transition-all duration-300"
+            className="group btn-outline px-10 py-5 text-lg font-medium rounded-2xl hover:scale-105 transition-all duration-300"
             aria-label="Watch TransX platform demonstration video"
           >
             <Play className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -151,33 +150,33 @@ const Hero = () => {
           </Button>
         </div>
 
-        {/* Enhanced Product Showcase */}
-        <div className={`mb-16 transform transition-all duration-1000 delay-900 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 text-neutral-600 text-sm font-medium mb-8">
-            <Sparkles className="w-4 h-4 text-blue-primary" />
+        {/* Enhanced Product Showcase - Better spacing */}
+        <div className={`mb-20 transform transition-all duration-1000 delay-900 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-muted text-muted-foreground text-sm font-medium mb-12">
+            <Sparkles className="w-4 h-4 text-primary" />
             <span>Our Complete Blockchain Ecosystem</span>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto" role="list" aria-label="TransX product ecosystem">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto" role="list" aria-label="TransX product ecosystem">
             {products.map((product, index) => (
               <div
                 key={product.name}
-                className={`card-modern card-hover p-6 group transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                className={`card-modern card-hover p-8 group transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                   isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ animationDelay: `${1000 + index * 150}ms` }}
                 role="listitem"
                 aria-label={`${product.name} - ${product.badge}`}
               >
-                <div className="flex flex-col items-center text-center space-y-3">
-                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${product.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${product.color} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}>
                     <div className="text-white">
                       {product.icon}
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground text-lg">{product.name}</h3>
-                    <span className="text-xs px-2 py-1 rounded-full bg-neutral-100 text-neutral-600 font-medium">
+                    <h3 className="font-bold text-foreground text-lg mb-2">{product.name}</h3>
+                    <span className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-medium">
                       {product.badge}
                     </span>
                   </div>
@@ -187,28 +186,18 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Trust Indicators / Stats */}
+        {/* Trust Indicators / Stats - Better spacing */}
         <div className={`transform transition-all duration-1000 delay-1200 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto" role="list" aria-label="TransX platform statistics and achievements">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto" role="list" aria-label="TransX platform statistics and achievements">
             {stats.map((stat, index) => (
               <div key={stat.label} className="text-center group hover:scale-105 transition-transform duration-300" role="listitem">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="text-blue-primary group-hover:scale-110 transition-transform duration-300" aria-hidden="true">{stat.icon}</div>
+                <div className="flex items-center justify-center mb-3">
+                  <div className="text-primary group-hover:scale-110 transition-transform duration-300" aria-hidden="true">{stat.icon}</div>
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground mb-1" aria-label={`${stat.value} ${stat.label}`}>{stat.value}</div>
-                <div className="text-sm text-neutral-600 font-medium">{stat.label}</div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground mb-2" aria-label={`${stat.value} ${stat.label}`}>{stat.value}</div>
+                <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Enhanced Scroll Indicator */}
-        <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1400 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex flex-col items-center group cursor-pointer hover:scale-110 transition-transform duration-300" role="button" aria-label="Scroll down to explore platform" tabIndex={0}>
-            <div className="w-6 h-10 border-2 border-neutral-400 rounded-full mb-2 flex justify-center group-hover:border-blue-primary transition-colors duration-300">
-              <div className="w-1 h-3 bg-neutral-400 rounded-full mt-2 animate-bounce group-hover:bg-blue-primary transition-colors duration-300" />
-            </div>
-            <p className="text-xs text-neutral-500 font-medium tracking-wide uppercase">Explore Platform</p>
           </div>
         </div>
       </div>
