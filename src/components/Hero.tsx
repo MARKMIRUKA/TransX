@@ -150,14 +150,7 @@ const Hero = () => {
         </div>
 
         {/* Enhanced Scroll Indicator */}
-        <div className={`absolute bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1400 ${isVisible ? 'fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex flex-col items-center group cursor-pointer hover:scale-110 transition-transform duration-300" role="button" aria-label="Scroll down to explore platform" tabIndex={0}>
-            <div className="w-6 h-10 border-2 border-neutral-400 rounded-full mb-3 flex justify-center group-hover:border-blue-primary transition-colors duration-300">
-              <div className="w-1 h-3 bg-neutral-400 rounded-full mt-2 animate-bounce group-hover:bg-blue-primary transition-colors duration-300" />
-            </div>
-            <p className="text-xs text-neutral-500 font-medium tracking-wide uppercase">Explore Platform</p>
-          </div>
-        </div>
+        
       </div>
     </section>;
 };
